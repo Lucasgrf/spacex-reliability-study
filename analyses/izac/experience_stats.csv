@@ -1,0 +1,5 @@
+experience_level,count,mean,success_rate (%)
+Novatos (0),43,0.8837209302325582,88.37209302325581
+Intermediários (1-3),50,1.0,100.0
+Experientes (4-6),30,1.0,100.0
+Veteranos (7+),69,1.0,100.0
