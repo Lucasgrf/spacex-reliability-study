@@ -1,0 +1,93 @@
+%% sections/methodology.tex
+
+\chapter{Metodologia}
+\label{chap:methodology}
+
+Neste capítulo, descrevemos a origem dos dados, como foram coletados e tratados, a estrutura do dataset final e os métodos estatísticos que utilizamos.
+
+\section{Fonte de Dados}
+
+Os dados utilizados neste estudo foram obtidos da \textbf{SpaceX API v4} \cite{spacex_api}, uma API REST de código aberto mantida pela comunidade que reúne informações sobre os lançamentos, foguetes e propulsores da SpaceX. Utilizamos três endpoints:
+
+\begin{itemize}
+    \item \texttt{/launches} — dados de cada missão (data, nome, resultado, identificadores de foguete e propulsor);
+    \item \texttt{/rockets} — informações sobre as famílias de foguetes (Falcon 1, Falcon 9, Falcon Heavy);
+    \item \texttt{/cores} — histórico individual de cada propulsor (quantas vezes voou, status atual).
+\end{itemize}
+
+A API não exige autenticação e sua estrutura de dados foi validada antes do início da coleta \cite{spacex_api_docs}.
+
+\section{Coleta e Tratamento dos Dados (ETL)}
+
+Todo o processo de coleta e tratamento foi implementado em Python 3 \cite{python} com a biblioteca Pandas \cite{mckinney2010pandas}, e está documentado no notebook \texttt{lucas\_data\_extraction.ipynb}. As etapas foram as seguintes:
+
+\begin{enumerate}
+    \item \textbf{Extração}: Coletamos 205 lançamentos do endpoint \texttt{/launches} e cruzamos com os dados de \texttt{/rockets} e \texttt{/cores} usando os identificadores de cada registro;
+    \item \textbf{Transformação}: Calculamos campos derivados como \texttt{launch\_year} (extraído da data) e \texttt{is\_reused} (se o booster já tinha voado antes). Também tratamos as missões do Falcon Heavy, que usa 3 boosters e gera 3 linhas por lançamento. Durante essa etapa, corrigimos um bug no cálculo do \texttt{reuse\_count} que estava usando o tamanho de uma lista em vez do valor direto da API;
+    \item \textbf{Limpeza}: Removemos 23 registros que tinham o campo \texttt{success} nulo — eram missões que estavam planejadas para 2022 mas ainda não tinham sido executadas no momento da coleta;
+    \item \textbf{Validação}: Verificamos que o dataset final tinha as 9 colunas esperadas, nenhum valor nulo, nenhuma duplicata, e que os tipos de dados estavam corretos.
+\end{enumerate}
+
+\section{Dataset Final}
+
+Após o tratamento, chegamos ao dataset descrito na \autoref{tab:dataset_overview}.
+
+\begin{table}[H]
+\centering
+\caption{Características do dataset final (\texttt{processed\_dataset\_v1.csv}).}
+\label{tab:dataset_overview}
+\begin{tabular}{ll}
+\toprule
+\textbf{Aspecto}              & \textbf{Valor} \\
+\midrule
+Registros                      & 192 \\
+Variáveis                     & 9 \\
+Valores nulos                  & 0 \\
+Duplicatas                     & 0 \\
+Período                        & 2006--2022 \\
+Unidade de observação          & Booster (propulsor) por missão \\
+Taxa de sucesso global         & 97,40\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Um ponto que vale destacar: a unidade de observação do dataset é o \textbf{booster}, não o lançamento. Essa decisão foi intencional — como a pergunta de pesquisa trata da confiabilidade do \textit{propulsor}, faz sentido que cada booster seja analisado individualmente. Na prática, isso significa que um lançamento do Falcon Heavy (que usa 3 boosters) gera 3 linhas no dataset, cada uma com seu próprio \texttt{reuse\_count}.
+
+A \autoref{tab:data_dictionary} descreve as variáveis disponíveis.
+
+\begin{table}[H]
+\centering
+\caption{Dicionário de dados.}
+\label{tab:data_dictionary}
+\begin{tabular}{llp{7cm}}
+\toprule
+\textbf{Variável} & \textbf{Tipo} & \textbf{Descrição} \\
+\midrule
+\texttt{launch\_year}   & int64   & Ano do lançamento (2006--2022) \\
+\texttt{launch\_name}   & string  & Nome oficial da missão \\
+\texttt{flight\_number} & int64   & Número sequencial do voo \\
+\texttt{success}        & bool    & Resultado da missão (True/False) \\
+\texttt{rocket\_name}   & string  & Família do foguete (Falcon 1, 9, Heavy) \\
+\texttt{core\_id}       & string  & Identificador único do booster \\
+\texttt{reuse\_count}   & int64   & Nº de voos anteriores do booster (0--13) \\
+\texttt{is\_reused}     & bool    & Se o booster já havia voado (reuse\_count $> 0$) \\
+\texttt{launch\_date}   & string  & Data e hora em UTC (formato ISO 8601) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Métodos Estatísticos}
+
+Cada membro da equipe ficou responsável por uma dimensão da análise, mas todos utilizaram um conjunto comum de métodos:
+
+\begin{itemize}
+    \item \textbf{Estatística descritiva}: frequências, proporções e taxas de sucesso para cada grupo analisado;
+    \item \textbf{Intervalos de confiança}: IC de 95\% para as taxas de sucesso anuais, o que ajuda a avaliar a incerteza das estimativas, especialmente nos anos com poucos lançamentos;
+    \item \textbf{Tabulação cruzada}: comparação de taxas entre grupos (virgens vs.\ reutilizados; entre famílias de foguetes; entre faixas de experiência);
+    \item \textbf{Análise dose-resposta}: avaliação de como a taxa de sucesso se comporta à medida que o \texttt{reuse\_count} aumenta, para verificar se existe efeito de desgaste;
+    \item \textbf{Controle temporal}: estratificação por ano para tentar separar o efeito da reutilização do efeito da maturidade operacional da empresa.
+\end{itemize}
+
+\section{Ferramentas}
+
+As análises foram feitas em Python 3 usando Pandas \cite{mckinney2010pandas} para manipulação de dados, Matplotlib \cite{hunter2007matplotlib} para os gráficos, e SciPy \cite{virtanen2020scipy} para os testes estatísticos. Todo o código está versionado no GitHub.

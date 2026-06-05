@@ -1,0 +1,29 @@
+%% sections/conclusion.tex
+
+\chapter{Conclusão}
+\label{chap:conclusion}
+
+\section{Resposta à Pergunta de Pesquisa}
+
+Voltando à pergunta que motivou este trabalho — \textit{a reutilização de foguetes afeta a confiabilidade das missões?} — a resposta, com base nos dados que analisamos, é que não encontramos evidência de impacto negativo.
+
+Os números são, na verdade, favoráveis à reutilização: boosters que já haviam voado antes tiveram taxa de sucesso de 100\% em 149 registros, enquanto os boosters virgens ficaram em 88,37\% (38 de 43). Não identificamos nenhum sinal de degradação mesmo em boosters com até 13 voos acumulados, o que vai contra a intuição de que o uso repetido deveria desgastar os componentes e reduzir a confiabilidade.
+
+A SpaceX, como empresa, melhorou muito ao longo do período analisado. A taxa de sucesso saiu de 0\% nos primeiros lançamentos em 2006 para 100\% sustentado a partir de 2017, ao mesmo tempo em que o volume de operações cresceu de forma significativa. Essa melhoria acompanhou tanto a evolução dos foguetes — do Falcon 1 ao Falcon 9 e ao Falcon Heavy — quanto a adoção cada vez maior da reutilização.
+
+É importante, no entanto, não confundir correlação com causalidade. Os confundidores que identificamos (viés temporal, viés de seleção e tamanhos amostrais desiguais) são relevantes e impedem que afirmemos com certeza que a reutilização \textit{causa} mais confiabilidade. O que podemos afirmar é que, nos dados disponíveis, reutilizar boosters não prejudicou o desempenho das missões.
+
+\section{Contribuições}
+
+Este trabalho apresenta uma análise quantitativa dos lançamentos da SpaceX integrando quatro perspectivas complementares — temporal, reutilização, experiência do booster e famílias de foguetes. Além de responder à pergunta de pesquisa, o estudo identifica e documenta os principais confundidores que limitam a interpretação dos resultados, algo que frequentemente é negligenciado em análises mais superficiais sobre o tema.
+
+\section{Trabalhos Futuros}
+
+Algumas direções que podem ser exploradas em trabalhos futuros:
+
+\begin{itemize}
+    \item Atualizar o dataset com lançamentos mais recentes, especialmente os que envolvem boosters com mais de 20 voos;
+    \item Aplicar métodos de inferência causal, como \textit{propensity score matching}, para tentar separar melhor o efeito da reutilização do efeito temporal;
+    \item Incluir variáveis adicionais na análise, como massa da carga útil, tipo de órbita e local de lançamento;
+    \item Ampliar a análise para outros operadores de lançamento (RocketLab, ULA) para contextualizar os resultados da SpaceX frente ao restante da indústria.
+\end{itemize}

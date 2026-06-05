@@ -1,0 +1,60 @@
+%% sections/discussion.tex
+
+\chapter{Discussão}
+\label{chap:discussion}
+
+Olhando para os resultados das quatro análises em conjunto, eles apontam numa mesma direção: não encontramos evidência de que a reutilização de boosters prejudique a confiabilidade das missões. Pelo contrário, os boosters reutilizados apresentaram desempenho superior aos virgens em todas as métricas que analisamos. Mas antes de aceitar essa conclusão, precisamos discutir os vieses e limitações que podem estar influenciando esses números.
+
+\section{Visão Integrada}
+
+A \autoref{tab:synthesis} resume o que cada análise encontrou.
+
+\begin{table}[H]
+\centering
+\caption{Síntese dos resultados por eixo de análise.}
+\label{tab:synthesis}
+\begin{tabular}{p{3cm}p{5cm}p{4.5cm}}
+\toprule
+\textbf{Análise} & \textbf{Principal Achado} & \textbf{Confundidor} \\
+\midrule
+Temporal         & Sucesso evoluiu de 0\% para 100\% (2017--2022) & Mudança de família de foguete \\
+Reutilização     & Reutilizados: 100\% vs.\ Virgens: 88,4\%      & Viés temporal + viés de seleção \\
+Experiência      & Após 1º voo, 100\% em todas as faixas          & \textit{Survivorship bias} \\
+Famílias         & F1: 40\% | F9: 98,9\% | FH: 100\%             & Tamanhos amostrais desiguais \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Quando juntamos as peças, a história que emerge é a seguinte: a análise temporal do Gabriel mostra que a SpaceX melhorou consistentemente ao longo do tempo, tanto em confiabilidade quanto em volume de operações. O Kaio mostrou que, nesse contexto, os boosters reutilizados nunca falharam. O Izac detalhou que o risco está concentrado no primeiro voo — depois disso, o booster mantém desempenho perfeito independentemente de quantas vezes voa. E o Jonatas mostrou que a evolução tecnológica entre as famílias de foguetes também teve papel importante nessa melhoria.
+
+\section{Os Confundidores}
+
+\subsection{Viés Temporal}
+
+Esse é provavelmente o ponto mais delicado da nossa análise. A reutilização de boosters é um fenômeno recente — o primeiro booster reutilizado voou em 2016, época em que a SpaceX já tinha anos de experiência operacional com o Falcon 9. Então, quando dizemos que boosters reutilizados têm 100\% de sucesso, parte desse resultado pode simplesmente refletir o fato de que a empresa ficou melhor com o tempo, e não que a reutilização em si melhora a confiabilidade.
+
+A análise temporal do Kaio ajuda um pouco a separar esses efeitos: nos anos em que os dois tipos de booster coexistem (2016--2022), os reutilizados continuam com desempenho perfeito. Mas mesmo assim, não dá para eliminar completamente essa dúvida com os dados que temos.
+
+\subsection{Viés de Seleção}
+
+Existe também um viés de seleção importante que não pode ser ignorado. Por definição, só são reutilizados os boosters que completaram pelo menos um voo com sucesso \textit{e} foram recuperados em boas condições. Ou seja, o grupo ``reutilizado'' já chega pré-filtrado — qualquer booster com defeito de fabricação ou problema estrutural tende a falhar no primeiro voo e ser descartado, nunca entrando na amostra de reutilizados.
+
+A análise do Izac deixa isso especialmente claro: todos os boosters que ``sobrevivem'' ao primeiro voo mantêm 100\% de sucesso depois. Isso pode ser visto como uma confirmação de qualidade — mas também pode ser simplesmente o efeito de um filtro natural que elimina os boosters problemáticos antes que eles possam ser reutilizados.
+
+\subsection{Tamanhos Amostrais}
+
+As amostras dos diferentes grupos são bem desiguais. O Falcon 9 tem 178 registros, mas o Falcon 1 tem apenas 5 e o Falcon Heavy apenas 9. Da mesma forma, temos 149 boosters reutilizados contra 43 virgens. Essa assimetria limita a confiança que podemos ter nas comparações, especialmente para os grupos menores, cujos intervalos de confiança são bastante amplos.
+
+\section{Outras Limitações}
+
+Além dos confundidores que discutimos acima, vale mencionar algumas limitações adicionais:
+
+\begin{itemize}
+    \item A variável \texttt{success} só registra se o objetivo principal da missão foi atingido ou não. Problemas que não chegaram a comprometer a missão (como anomalias de pouso, por exemplo) não aparecem nos dados;
+
+    \item O dataset vai apenas até 2022 e não inclui os lançamentos mais recentes, que envolvem boosters com números recordes de reutilização;
+
+    \item Por ser um estudo observacional, não temos como atribuir causalidade — apenas associações. Seria necessário um experimento controlado para isso, o que obviamente não é viável nesse contexto;
+
+    \item Todos os dados vêm de uma única fonte (SpaceX API mantida pela comunidade), o que pode introduzir imprecisões não documentadas.
+\end{itemize}
