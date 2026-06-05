@@ -1,0 +1,101 @@
+%% main.tex — Relatório Final: SpaceX Reliability Study
+%% Classe: abntex2
+
+\documentclass[
+    12pt,
+    openright,
+    oneside,
+    a4paper,
+    brazil
+]{abntex2}
+
+% ── Pacotes ────────────────────────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[brazilian,hyperpageref]{backref}
+\usepackage[alf]{abntex2cite}
+
+% ── Caminho das figuras ───────────────────────────────────────────────────
+\graphicspath{{../graphs/}}
+
+% ── Dados do documento ────────────────────────────────────────────────────
+\titulo{Evidência Estatística de Confiabilidade em Sistemas de Foguetes Reutilizáveis: Um Estudo com Dados da SpaceX}
+\autor{
+    Lucas Gabriel Rocha Ferreira \and
+    Gabriel Garcia\and
+    Kaio Ribeiro\and
+    Izac Regis\and
+    Jônatas Pereira
+}
+\local{Brasil}
+\data{Junho de 2026}
+\orientador{Roberto Carlos Rodriguez}
+\instituicao{Jala University}
+
+\tipotrabalho{Relatório de Pesquisa}
+\preambulo{Relatório final do estudo sobre a confiabilidade de sistemas de foguetes reutilizáveis, utilizando dados da SpaceX API v4, apresentado como requisito parcial para a disciplina de Estatística.}
+
+% ── Configurações do PDF ──────────────────────────────────────────────────
+\makeatletter
+\hypersetup{
+    pdftitle={\@title},
+    pdfauthor={\@author},
+    pdfsubject={\imprimirpreambulo},
+    pdfkeywords={SpaceX}{reutilização}{confiabilidade}{estatística},
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+    bookmarksdepth=4
+}
+\makeatother
+
+% ══════════════════════════════════════════════════════════════════════════
+\begin{document}
+
+% ── Elementos pré-textuais ────────────────────────────────────────────────
+\pretextual
+
+% Capa
+\imprimircapa
+
+% Folha de rosto
+\imprimirfolhaderosto
+
+% ── Resumo ────────────────────────────────────────────────────────────────
+\begin{resumo}
+O presente trabalho analisa dados de lançamentos da SpaceX para verificar se a reutilização de propulsores orbitais tem impacto sobre a confiabilidade das missões. Foram utilizados 192 registros de boosters extraídos da SpaceX API v4, cobrindo o período de 2006 a 2022 e as famílias Falcon 1, Falcon 9 e Falcon Heavy. A análise foi conduzida com estatística descritiva, intervalos de confiança e tabulação cruzada com controle temporal. Os boosters reutilizados apresentaram 100\% de sucesso (149 de 149), contra 88,37\% dos virgens (38 de 43), e não foi observada degradação mesmo em boosters com até 13 voos acumulados. No entanto, a presença de viés temporal e viés de seleção nos dados impede afirmações definitivas de causalidade. De modo geral, os resultados sugerem que a reutilização não compromete a confiabilidade das missões.
+
+\vspace{\onelineskip}
+\noindent
+\textbf{Palavras-chave}: SpaceX. Reutilização de foguetes. Confiabilidade. Análise estatística.
+\end{resumo}
+
+% ── Sumário ───────────────────────────────────────────────────────────────
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+
+% ── Elementos textuais ────────────────────────────────────────────────────
+\textual
+
+\input{sections/introduction}
+\input{sections/methodology}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+% ── Elementos pós-textuais ────────────────────────────────────────────────
+\postextual
+
+\bibliography{references}
+
+\end{document}

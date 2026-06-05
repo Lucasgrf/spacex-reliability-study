@@ -1,0 +1,40 @@
+%% sections/introduction.tex
+
+\chapter{Introdução}
+
+Nos últimos anos, a indústria aeroespacial passou por mudanças consideráveis com a entrada de empresas privadas no mercado de lançamentos orbitais. A SpaceX, fundada em 2002 por Elon Musk, foi uma das principais responsáveis por essa transformação ao apostar em algo que até então era considerado inviável: pousar e reutilizar os propulsores de primeiro estágio dos seus foguetes \cite{jones2018spacex_reuse}.
+
+Antes disso, o padrão da indústria era descartar o foguete inteiro após cada lançamento. Cada missão exigia a construção de um veículo novo, o que tornava o acesso ao espaço extremamente caro. A SpaceX começou a mudar isso em 2015, quando conseguiu pousar com sucesso o primeiro estágio de um Falcon 9, e desde então vem reutilizando seus boosters com frequência cada vez maior \cite{zapata2017spacex_economics}.
+
+Essa estratégia de reutilização traz benefícios econômicos claros, mas levanta uma dúvida legítima do ponto de vista de engenharia: será que usar o mesmo propulsor várias vezes não compromete a segurança e a confiabilidade das missões? Se boosters reutilizados falhassem mais, a economia obtida com a reutilização poderia não compensar o risco.
+
+\section{Pergunta de Pesquisa}
+
+É exatamente essa a pergunta que este trabalho busca responder:
+
+\begin{quote}
+\textit{A reutilização de foguetes afeta a confiabilidade das missões?}
+\end{quote}
+
+\section{Hipótese}
+
+Nossa hipótese é que boosters reutilizados mantêm — ou até melhoram — a confiabilidade ao longo de múltiplos lançamentos, o que indicaria que a reutilização é uma estratégia viável sem comprometer o sucesso das missões.
+
+\section{Objetivos}
+
+\subsection{Objetivo Geral}
+
+Analisar dados históricos de lançamentos da SpaceX para avaliar se a reutilização de propulsores tem algum impacto sobre a confiabilidade das missões.
+
+\subsection{Objetivos Específicos}
+
+\begin{enumerate}
+    \item Mapear como a taxa de sucesso dos lançamentos evoluiu entre 2006 e 2022;
+    \item Comparar o desempenho de boosters virgens com o de boosters que já haviam voado antes;
+    \item Verificar se existe degradação à medida que um booster acumula mais voos (análise dose-resposta);
+    \item Comparar a confiabilidade das diferentes famílias de foguetes da SpaceX (Falcon 1, Falcon 9, Falcon Heavy).
+\end{enumerate}
+
+\section{Estrutura do Trabalho}
+
+O restante deste relatório está organizado da seguinte forma: o \autoref{chap:methodology} apresenta de onde vieram os dados, como foram tratados e quais métodos estatísticos foram usados; o \autoref{chap:results} traz os resultados de cada análise; o \autoref{chap:discussion} discute o que esses resultados significam quando olhados em conjunto, apontando também suas limitações; e o \autoref{chap:conclusion} fecha com as conclusões e sugestões para trabalhos futuros.
