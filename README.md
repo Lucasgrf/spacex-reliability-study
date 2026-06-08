@@ -1,5 +1,7 @@
 # SpaceX Reliability Study
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Lucasgrf/spacex-reliability-study/blob/main/notebooks/master_analysis.ipynb)
+
 Estudo estatístico empírico sobre o impacto da reutilização de propulsores orbitais (boosters) na confiabilidade das missões aeroespaciais da SpaceX.
 
 ---
