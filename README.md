@@ -21,7 +21,6 @@ Investigamos se a fadiga mecânica ou outros fatores de desgaste decorrentes de 
 * **Kaio Ribeiro de Sousa** — Analista (Impacto da Reutilização)
 * **Izac Regis de Souza** — Analista (Curva de Experiência e Desgaste)
 * **Jônatas Pereira** — Analista (Famílias de Foguetes)
-* **Guilherme Muller de Souza** — Pesquisa e Suporte
 
 ---
 
